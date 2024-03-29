@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Tab 1{% endblock %}
+
+{% block heading %}Welcome to Tab 1{% endblock %}
+
+{% block content %}
+<br><br>
+
+<div class="container">
+    <h2>Node Insertion</h2>
+    <form method="post" action="{{ url_for('tab1.tab1_home') }}">
+        <div class="form-group">
+            <br>
+            <label for="NE" style="font-weight: bold; font-size: 20px;">Please input NE List:</label>
+            <br>
+            <textarea name="NE" class="form-control" id="NE" rows="4" cols="50" required></textarea>
+            <br>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+    <!-- Display the table only if the form has been submitted -->
+    {% if form_submitted %}
+    </br>
+        <h2 style="text-align:center">Results</h2>
+        <table class="table table-bordered mx-auto"> <!-- Add mx-auto class to center the table -->
+            <thead>
+                <tr>
+                    <th>NE Name</th>
+                    <th>East Port Description</th>
+                    <th>West Port Description</th>
+                    <th>LoopBack0</th>
+                    <th>LoopBack1</th>
+                    <th>Version</th>
+                    <th>East NE Name</th>
+                    <th>West Port Description of East NE</th>
+                    <th>West NE Name</th>
+                    <th>East Port Description of West NE</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                    <tr>
+                        <td>{{ row['NE Name'] }}</td>
+                        <td>{{ row['East Port Description'] }}</td>
+                        <td>{{ row['West Port Description'] }}</td>
+                        <td>{{ row['LoopBack0'] }}</td>
+                        <td>{{ row['LoopBack1'] }}</td>
+                        <td>{{ row['Version'] }}</td>
+                        <td>{{ row['East NE Name'] }}</td>
+                        <td>{{ row['West Port Description of East NE'] }}</td>
+                        <td>{{ row['West NE Name'] }}</td>
+                        <td>{{ row['East Port Description of West NE'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,99 @@
+<!-- templates/tab5/index.html -->
+{% extends "base.html" %}
+
+{% block title %}Tab 5{% endblock %}
+
+{% block heading %}Welcome to Tab 5{% endblock %}
+
+{% block content %}
+</br>
+</br>
+
+<div class="container">
+    <!-- Nav tabs -->
+    <h2>NE Deletion</h2>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" data-toggle="tab" href="#input1">NE List</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#input2">TNOC Summary</a>
+        </li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div id="input1" class="tab-pane fade show active">
+            <form method="post" action="{{ url_for('tab5.tab5_home') }}">
+                <div class="form-group">
+                    <br>
+                    <label for="NE1" style="font-weight: bold; font-size: 20px;">Please input NE List:</label>
+                    <br>
+                    <textarea name="NE1" class="form-control" id="NE1" rows="4" cols="50" required></textarea>
+                    <br>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div id="input2" class="tab-pane fade">
+            <form method="post" action="{{ url_for('tab5.tab5_home') }}">
+                <div class="form-group">
+                    <br>
+                    <label for="NE2" style="font-weight: bold; font-size: 20px;">Please input TNOC Summary Email:</label>
+                    <br>
+                    <textarea name="NE2" class="form-control" id="NE2" rows="4" cols="50" required></textarea>
+                    <br>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Success and Error Tables -->
+{% if result %}
+<div class="container">
+    <h2>Search Result</h2>
+    <table class="table table-bordered table-success">
+        <thead>
+            <tr>
+                <th>NE Name</th>
+                <th>IP Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ne_info in result %}
+            <tr>
+                <td>{{ ne_info[0] }}</td>
+                <td>{{ ne_info[1] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+{% if error_message %}
+<div class="container">
+    <h2>NEs still found in NCE</h2>
+    <table class="table table-bordered table-danger">
+        <thead>
+            <tr>
+                <th>NE Name</th>
+                <th>IP Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for error_ne in error_message %}
+            <tr>
+                <td>{{ error_ne[0] }}</td>
+                <td>{{ error_ne[1] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+{% endblock %}

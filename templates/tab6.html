@@ -1,0 +1,70 @@
+<!-- templates/tab6/index.html -->
+{% extends "base.html" %}
+
+{% block title %}Tab 6{% endblock %}
+
+{% block heading %}Welcome to Tab 6{% endblock %}
+
+{% block content %}
+<br><br>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<div class="container">
+    <h2>Node Deletion in ISE</h2>
+    <form method="post" action="{{ url_for('tab6.tab6_home') }}">
+        <div class="form-group">
+            <br>
+            <label for="NE" style="font-weight: bold; font-size: 20px;">Please input NE List:</label>
+            <br>
+            <textarea name="NE" class="form-control" id="NE" rows="4" cols="50" required></textarea>
+            <br>
+        </div>
+
+        <!-- New fields for username and password -->
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" name="username" class="form-control" id="username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <div class="input-group">
+                <input type="password" name="password" class="form-control" id="password" required>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary reveal-password" type="button">Show</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Delete from ISE</button>
+        </div>
+    </form>
+</div>
+{% if execution_successful %}
+<div class="container mt-3">
+    <div class="alert alert-success" role="alert">
+        {{ execution_successful }}
+    </div>
+</div>
+{% endif %}
+
+{% if error_message %}
+<div class="container mt-3">
+    <div class="alert alert-danger" role="alert">
+        <strong>{{ error_message }}</strong>
+    </div>
+</div>
+{% endif %}
+<script>
+    // JavaScript to toggle password visibility
+    document.addEventListener('DOMContentLoaded', function () {
+        const passwordField = document.getElementById('password');
+        const toggleButton = document.querySelector('.reveal-password');
+
+        toggleButton.addEventListener('click', function () {
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+            this.textContent = type === 'password' ? 'Show' : 'Hide';
+        });
+    });
+</script>
+{% endblock %}

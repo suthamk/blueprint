@@ -1,0 +1,5 @@
+RKL0647-ATN950D-01,10.205.38.141
+RJE0114-ATN950D-02,10.205.40.233
+ARJ260A-ATN950D-01,10.205.37.46
+
+Created and managed a Flask-based web application designed to aid the Network Operations team in seamlessly integrating and removing network elements within the network management system, leading to a 40% increase in operational efficiency.

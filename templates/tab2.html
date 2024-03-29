@@ -1,0 +1,38 @@
+<!-- templates/tab2/index.html -->
+{% extends "base.html" %}
+
+{% block title %}Tab 2{% endblock %}
+
+{% block heading %}Welcome to Tab 2{% endblock %}
+
+{% block content %}
+<br><br>
+
+<div class="container">
+    <h2>Upload File</h2>
+    <form method="post" action="{{ url_for('tab2.tab2_home') }}" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="file">Choose File:</label>
+            <input type="file" class="form-control-file" id="file" name="file" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Upload</button>
+    </form>
+</div>
+
+{% if upload_message %}
+<div class="container mt-3">
+    <div class="alert alert-success" role="alert">
+        {{ upload_message }}
+    </div>
+</div>
+{% endif %}
+
+{% if error_message %}
+<div class="container mt-3">
+    <div class="alert alert-danger" role="alert">
+        <strong>{{ error_message }}</strong>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}
